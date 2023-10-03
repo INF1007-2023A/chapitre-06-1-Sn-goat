@@ -16,13 +16,19 @@ def order():
     print(newList)
 
 
-def anagrams(words: list = None) -> bool:
-    if words is None:
-        # TODO: demander les mots ici
-        pass
+def anagrams():
+    word1 = input("Entrez un anagramme: ")
+    word1List = [i for i in word1]
+    word1List.sort()
+    word2 = input("Entrez un autre anagramme: ")
+    word2List = [i for i in word2]
+    word2List.sort()
+    x = len(word1List)
 
-    return False
-
+    if word1List == word2List:
+        print("Les deux mots sont des anagrammes")
+    else:
+        print("Les deux mots ne sont pas des anagrammes")
 
 def contains_doubles(items: list) -> bool:
     return False
