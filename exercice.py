@@ -17,26 +17,42 @@ def order():
 
 
 def anagrams():
-    word1 = input("Entrez un anagramme: ")
+    word1 = input("Entrez un mot: ")
     word1List = [i for i in word1]
     word1List.sort()
-    word2 = input("Entrez un autre anagramme: ")
+    word2 = input("Entrez un autre mot ")
     word2List = [i for i in word2]
     word2List.sort()
-    x = len(word1List)
 
     if word1List == word2List:
         print("Les deux mots sont des anagrammes")
     else:
         print("Les deux mots ne sont pas des anagrammes")
 
-def contains_doubles(items: list) -> bool:
-    return False
+def contains_doubles(my_list):
+    for value in my_list:
+        repeat = my_list.count(value) > 1
+        if repeat == False:
+            pass
+        else:
+            return repeat
+    return repeat
 
 
-def best_grades(student_grades: dict) -> dict:
-    # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
+def best_grades(grade):
+    notei = 0
+    nombre_de_notes = 0
+
+    for list in grades:
+        for note in grades[list]:
+            notei +=  note
+            nombre_de_notes += 1
+        grades[list] = notei / nombre_de_notes
+        notei = 0
+        nombre_de_notes = 0
+       
+    return (max(grades, key=grades.get)), max(grades.values())
+
 
 
 def frequence(sentence: str) -> dict:
@@ -67,8 +83,7 @@ def main() -> None:
     print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
 
     grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
-    best_student = best_grades(grades)
-    print(f"{list(best_student.keys())[0]} a la meilleure moyenne: {list(best_student.values())[0]}")
+    print(best_grades(grades))
 
     sentence = "bonjour, je suis une phrase. je suis compose de beaucoup de lettre. oui oui"
     frequence(sentence)
