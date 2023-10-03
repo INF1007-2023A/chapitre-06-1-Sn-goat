@@ -2,12 +2,18 @@
 # -*- coding: utf-8 -*-
 
 
-def order(values: list = None) -> list:
-    if values is None:
-        # TODO: demander les valeurs ici
-        pass
-
-    return []
+def order():
+    values_input = input("Entrez une liste de valeur: ")
+    values = values_input.split(",") 
+    newList_str = [i for i in values if '"' in i ]
+    newList_int_flot = [i for i in  values if '"' not in i ]
+    newList_float = [i for i in newList_int_flot if float(i) % 1 != 0]
+    newList_int = [i for i in newList_int_flot if float(i) % 1 == 0]
+    newList = []
+    newList.extend(newList_int)
+    newList.extend(newList_float)
+    newList.extend(newList_str)
+    print(newList)
 
 
 def anagrams(words: list = None) -> bool:
