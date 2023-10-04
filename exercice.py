@@ -55,11 +55,19 @@ def best_grades(grade):
 
 
 
-def frequence(sentence: str) -> dict:
-    # TODO: Afficher les lettres les plus fréquentes
-    #       Retourner le tableau de lettres
-
-    return {}
+def frequence(sentence):
+    letterListe = [letter for letter in sentence if letter.isalpha()]
+    letterListe.sort()
+    letterListe2 = [letter for letter in letterListe if letterListe.count(letter) > 5 ]
+    letterListe2 = sorted(letterListe2,key=letterListe2.count,reverse=True)
+    # List en ordre decroissant
+    letterListe3 = []
+    for letter in letterListe2:
+        letterListe3.append(letter)
+        if letterListe3.count(letterListe3[letterListe3.index(letter)]) > 1:
+            letterListe3.remove(letter)
+    #lite avec seulement une lettre de chaque repetition
+    print(letterListe3)
 
 
 def get_recipes():
