@@ -9,11 +9,7 @@ def order():
     newList_int_flot = [i for i in  values if '"' not in i ]
     newList_float = [i for i in newList_int_flot if float(i) % 1 != 0]
     newList_int = [i for i in newList_int_flot if float(i) % 1 == 0]
-    newList = []
-    newList.extend(newList_int)
-    newList.extend(newList_float)
-    newList.extend(newList_str)
-    print(newList)
+    print(newList_int + newList_float + newList_str)
 
 
 def anagrams():
@@ -30,28 +26,14 @@ def anagrams():
         print("Les deux mots ne sont pas des anagrammes")
 
 def contains_doubles(my_list):
-    for value in my_list:
-        repeat = my_list.count(value) > 1
-        if repeat == False:
-            pass
-        else:
-            return repeat
-    return repeat
+    print("Is my liste contains doubles?: " + str(len(set(my_list)) !=  len(my_list)))
 
 
-def best_grades(grade):
-    notei = 0
-    nombre_de_notes = 0
-
+def best_grades(grades):
     for list in grades:
-        for note in grades[list]:
-            notei +=  note
-            nombre_de_notes += 1
-        grades[list] = notei / nombre_de_notes
-        notei = 0
-        nombre_de_notes = 0
-       
+        grades[list] =  sum(grades[list])/ len(grades[list])
     return (max(grades, key=grades.get)), max(grades.values())
+
 
 
 
@@ -71,24 +53,32 @@ def frequence(sentence):
 
 
 def get_recipes():
-    # TODO: Demander le nom d'une recette, puis ses ingredients et enregistrer dans une structure de données
-    pass
+
+    name = input("Quel est le nom de votre recette?\n")
+    ingredient = input("Entrer la liste d'ingrédients? Séparer les ingrédiants par une ,\n")
+    listeIngredient = ingredient.split(",")
+
+    return {name: listeIngredient}
 
 
-def print_recipe(ingredients) -> None:
-    # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
-    pass
+def print_recipe(listIngredients) -> None:
+    name = input("Quel est le nom de votre recette?\n")
+
+    if name in listIngredients:
+        print(listIngredients[name])
+    else:
+        print("Cette recette n'est pas dans le livre!")
+        print_recipe(listIngredients)
 
 
 def main() -> None:
-    print(f"On essaie d'ordonner les valeurs...")
+   
     order()
-
-    print(f"On vérifie les anagrammes...")
+    
     anagrams()
 
     my_list = [3, 3, 5, 6, 1, 1]
-    print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
+    contains_doubles(my_list)
 
     grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
     print(best_grades(grades))
